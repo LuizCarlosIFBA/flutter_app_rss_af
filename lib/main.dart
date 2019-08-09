@@ -35,8 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    GetRss get = new GetRss();
     setState(() {
-      GetRss.getRss();
+     get.getreflexion();
     });
     return Scaffold(
       appBar: AppBar(
@@ -45,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       body: Center(
         child: FutureBuilder(
-            future: GetRss.getRss(),
+            future:get.getreflexion(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
