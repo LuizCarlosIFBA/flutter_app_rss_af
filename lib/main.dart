@@ -10,12 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'UNEB',
       theme: ThemeData(
 
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Notícias UNEB'),
     );
   }
 }
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Icon(Icons.cloud_download),
-                        Text("Cargando Información...")
+                        Text("Carregando Informações...")
                       ],
                     ),
                   );
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(context,
                                 MaterialPageRoute(builder: (context) =>
                                     NewsDetails(
-                                      title: "Noticia",
+                                      title: "UNEB",
                                       url: snapshot.data[index].urlNoticia,
                                       key: null,
                                     ),
@@ -106,11 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
             }),
       ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+     
     );
   }
 }

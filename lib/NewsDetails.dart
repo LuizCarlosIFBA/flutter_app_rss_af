@@ -32,7 +32,7 @@ class _NewsDetailsState extends State<NewsDetails> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: null,
-        tooltip: 'Share next and last video / en el siguiente video ',
+        tooltip: 'Share next and last video / próximo vídeo ',
         child: Icon(Icons.share),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
