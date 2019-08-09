@@ -1,30 +1,69 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+void main(){
+  runApp(MaterialApp(
+     
+    home: MyApp(),
+    ));
+}  
 
-import 'package:flutter_app_rss_af/main.dart';
-
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+ class  MyApp extends StatefulWidget {
+   @override
+   GetRss createState() => GetRss();
+ }
+ 
+ class GetRss extends State<MyApp> {
+      List datas;
+   Future getreflexion() async{
+     var url="https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fportal.uneb.br%2Fnoticias%2Ffeed%2F";      
+  final response=await http.get(url);
+  setState(() {
+  if (response.statusCode == 200) {     
+    datas=jsonDecode(response.body)['items'];
+  print('${datas[0]['title']}');        
+     
+      }
   });
-}
+
+    return null;
+   }
+
+void initState(){
+     super.initState();  
+     this.getreflexion();
+  }
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+       appBar: AppBar(
+         title: Text('portal.uneb.br'),
+
+       ),
+      body: Container(
+        child: ListView.builder(
+          itemCount: datas==null? 0:datas.length,
+          itemBuilder: (context,index){
+            return Container(
+                child: Card(
+                  child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text('${datas[index]['title']}',style: TextStyle(fontWeight: FontWeight.bold),),
+                   
+                     Text('${datas[index]['link']}'),
+                     Text('${datas[index]['guid']}'),
+                      Text('${datas[index]['author']}'),
+                       Text('${datas[index]['pubDate']}'),
+                  ],
+                ),
+                )
+            );
+          },
+        ),
+      ),
+       
+     );
+   }
+ }
