@@ -1,9 +1,7 @@
 Notícias UNEB
 
 ![github-small](https://github.com/LuizCarlosIFBA/flutter_app_rss_af/1.png)
-![github-small](https://github.com/LuizCarlosIFBA/flutter_app_rss_af/1.png)
 
-photo by Mockup Photos on Unsplash
 
 
 
